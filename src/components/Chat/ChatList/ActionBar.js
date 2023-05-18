@@ -1,9 +1,34 @@
 import React, { useState } from 'react';
 import PhoneModal from '../../modal/PhoneModal';
 
-const ActionBar = ({ logout }) => {
+const ActionBar = ({ logout, setLogin, setChats }) => {
 	const [showDropdown, setShowDropdown] = useState(false);
 	const [showModal, setShowModal] = useState(false);
+
+	const handleToggleModal = () => {
+		setShowModal(true);
+		setShowDropdown(false);
+	};
+
+	const handleAddPhone = (phone) => {
+		if (localStorage.getItem('chat')) {
+			const existingData = JSON.parse(localStorage.getItem('chat')) || [];
+			if(existingData.includes(phone)) {
+				return
+			}
+			const updatedData = [...existingData, phone];
+			localStorage.setItem('chat', JSON.stringify(updatedData));
+		} else {
+			const arr = [phone];
+			localStorage.setItem('chat', JSON.stringify(arr));
+		}
+		setChats(JSON.parse(localStorage.getItem('chat')))
+	};
+
+	const handleLogout = () => {
+		logout();
+		setLogin(false);
+	};
 	return (
 		<div className='action-bar'>
 			<div
@@ -30,12 +55,13 @@ const ActionBar = ({ logout }) => {
 			{showDropdown && (
 				<div className='action-menu__dropdown'>
 					<ul>
-						<li onClick={() => setShowModal(true)}>Добавить чат</li>
-						<li onClick={logout}>Выйти</li>
+						<li onClick={handleToggleModal}>Добавить чат</li>
+						<li onClick={handleLogout}>Выйти</li>
 					</ul>
 				</div>
 			)}
 			<PhoneModal
+				addPhone={handleAddPhone}
 				isVisible={showModal}
 				title='Modal Title'
 				onClose={() => setShowModal(false)}
