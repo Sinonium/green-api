@@ -3,16 +3,28 @@ import ChatItem from '../ChatList/ChatItem';
 import ChatInput from './ChatInput';
 import './index.css';
 
-const ChatWindow = () => {
+const ChatWindow = ({ activeChat, messages, handleSendMessage }) => {
+
 	return (
 		<div className='chat'>
 			<div className='chat__wrapper'>
 				<header className='chat__user__info'>
-					<ChatItem isChatHeader />
+					<ChatItem name={activeChat} isChatHeader />
 				</header>
-				<div className='chat__dialogue-panel'></div>
+				<div className='chat__dialogue-panel'>
+					{messages?.length > 0 &&
+						messages.map((elem) => (
+							<div
+								className={`chat-message ${
+									elem.type === 'incoming' ? 'incoming' : ''
+								}`}
+								key={elem.idMessage}>
+								<span>{elem.textMessage}</span>
+							</div>
+						))}
+				</div>
 				<footer>
-					<ChatInput />
+					<ChatInput handleSendMessage={handleSendMessage} />
 				</footer>
 			</div>
 		</div>

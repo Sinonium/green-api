@@ -1,24 +1,29 @@
 import React, { useState } from 'react';
-import './index.css'
+import './index.css';
+import { login } from '../../service/api/login';
 
-const Login = () => {
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
-   const handleSubmit = () => {
-      localStorage.setItem('key', username)
-   }
+const Login = ({ setLogin }) => {
+	const [id, setId] = useState('');
+	const [token, setToken] = useState('');
+	const handleSubmit = async (e) => {
+		localStorage.setItem('id', id);
+		localStorage.setItem('token', token);
+		e.preventDefault();
+		login(id, token)
+		setLogin(true);
+	};
 	return (
 		<div className='login'>
 			<div className='login__wrapper'>
-				<form onSubmit={handleSubmit} className='login-form'>
+				<form onSubmit={(e) => handleSubmit(e)} className='login-form'>
 					<h2>Login</h2>
 					<div className='form-group'>
 						<label htmlFor='username'>IdInstance</label>
 						<input
 							type='text'
 							id='username'
-							value={username}
-							onChange={(e) => setUsername(e.target.value)}
+							value={id}
+							onChange={(e) => setId(e.target.value)}
 						/>
 					</div>
 					<div className='form-group'>
@@ -26,8 +31,8 @@ const Login = () => {
 						<input
 							type='password'
 							id='password'
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
+							value={token}
+							onChange={(e) => setToken(e.target.value)}
 						/>
 					</div>
 					<button type='submit'>Submit</button>

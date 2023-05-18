@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
 import './index.css';
 
-function ChatInput(props) {
+function ChatInput({ handleSendMessage }) {
 	const [inputText, setInputText] = useState('');
 
 	const handleInputChange = (event) => {
 		setInputText(event.target.value);
-	};
-
-	const handleKeyPress = (event) => {
-		if (event.key === 'Enter') {
-			props.onSend(inputText);
-			setInputText('');
-		}
 	};
 
 	return (
@@ -22,11 +15,10 @@ function ChatInput(props) {
 				placeholder='Type a message'
 				value={inputText}
 				onChange={handleInputChange}
-				onKeyPress={handleKeyPress}
 			/>
 			<button
 				onClick={() => {
-					props.onSend(inputText);
+					handleSendMessage(inputText);
 					setInputText('');
 				}}>
 				<svg
@@ -40,7 +32,7 @@ function ChatInput(props) {
 					y='0px'
 					enable-background='new 0 0 24 24'
 					xmlspace='preserve'
-               color='#8696a0'>
+					color='#8696a0'>
 					<path
 						fill='currentColor'
 						d='M1.101,21.757L23.8,12.028L1.101,2.3l0.011,7.912l13.623,1.816L1.112,13.845 L1.101,21.757z'></path>

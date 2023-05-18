@@ -1,15 +1,16 @@
 import React from 'react';
 
-const ChatItem = ({active, isChatHeader}) => {
+const ChatItem = ({ active, isChatHeader, name, onClick }) => {
 	return (
-		<div className={`list__item ${active || isChatHeader ? 'active' : ''}`}>
+		<div
+			onClick={onClick}
+			className={`list__item ${active || isChatHeader ? 'active' : ''}`}>
 			<div className='img__wrapper'>
 				<div></div>
 				<img src='' alt='' />
 			</div>
 			<div className='list__item__info'>
-				<span className='nickname'>Lorem, ipsum.</span>
-				{!isChatHeader && <span className='text'>Lorem ipsum dolor sit amet.</span>}
+				<span className='nickname'>{name}</span>
 			</div>
 		</div>
 	);

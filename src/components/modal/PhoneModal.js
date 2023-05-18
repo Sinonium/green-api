@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.css';
 
-const PhoneModal = ({ isVisible = false, onClose }) => {
+const PhoneModal = ({ isVisible = false, onClose, addPhone }) => {
+	const [phone, setPhone] = useState();
 	const keydownHandler = ({ key }) => {
 		switch (key) {
 			case 'Escape':
@@ -10,11 +11,16 @@ const PhoneModal = ({ isVisible = false, onClose }) => {
 			default:
 		}
 	};
+	const handleAddChat = () => {
+		addPhone(phone);
+		setPhone(null);
+		onClose();
+	};
 
 	React.useEffect(() => {
 		document.addEventListener('keydown', keydownHandler);
 		return () => document.removeEventListener('keydown', keydownHandler);
-	});
+	}, []);
 
 	return !isVisible ? null : (
 		<div className='modal' onClick={onClose}>
@@ -23,7 +29,12 @@ const PhoneModal = ({ isVisible = false, onClose }) => {
 					<h3 className='modal-title'>Введите номер</h3>
 				</div>
 				<div className='modal-body'>
-					<input type='tel' />
+					<input
+						value={phone}
+						onChange={(e) => setPhone(e.target.value)}
+						type='tel'
+					/>
+					<button onClick={() => handleAddChat()}>Добавить</button>
 				</div>
 				<div className='modal-footer'>
 					<button onClick={onClose}>Закрыть</button>
