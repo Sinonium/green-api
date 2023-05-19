@@ -9,7 +9,7 @@ const ChatList = ({ logout, setLogin, activeChat, setActive }) => {
 	);
 
 	return (
-		<div className='list'>
+		<div className={`list ${!activeChat ? 'active' : ''}`}>
 			<div className='list__wrapper'>
 				<ActionBar
 					logout={logout}
@@ -20,10 +20,10 @@ const ChatList = ({ logout, setLogin, activeChat, setActive }) => {
 					chats.length > 0 &&
 					chats.map((elem, index) => (
 						<ChatItem
-							active={activeChat === elem}
-							onClick={() => setActive(elem)}
-							name={elem}
-							key={elem}
+							active={activeChat === elem.phone}
+							onClick={() => setActive(elem.phone)}
+							elem={elem}
+							key={elem.phone}
 						/>
 					))}
 			</div>

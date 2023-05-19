@@ -11,6 +11,9 @@ const Chat = ({logout, setLogin}) => {
 	const handleActiveChat = (elem) => {
 		setActiveChat(elem)
 	}
+	const handleResetChat = () => {
+		setActiveChat(null)
+	}
 
 	const chatid = activeChat
 		?.split('')
@@ -19,7 +22,7 @@ const Chat = ({logout, setLogin}) => {
 	const id = localStorage.getItem('id');
 	const token = localStorage.getItem('token');
 	const handleSendMessage = async (message) => {
-		const messageId = await sendMessage(id, token, `${chatid}@c.us`, message);
+		const messageId = await sendMessage(id, token, `${chatid}@${chatid.length > 16 ? 'g' : 'c'}.us`, message);
 		setMessages((prev) => [
 			...prev,
 			{ idMessage: messageId, textMessage: message },
@@ -38,7 +41,7 @@ const Chat = ({logout, setLogin}) => {
 	return (
 		<>
 			<ChatList logout={logout} setLogin={setLogin} activeChat={activeChat} setActive={handleActiveChat}/>
-			<ChatWindow messages={messages} handleSendMessage={handleSendMessage} activeChat={activeChat}/>
+			<ChatWindow messages={messages} handleSendMessage={handleSendMessage} resetChat={handleResetChat} activeChat={activeChat}/>
 		</>
 	);
 };

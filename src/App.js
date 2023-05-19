@@ -18,13 +18,13 @@ const App = () => {
 			const data = await getData(isAuth, token);
 			if (data) {
 				const chats = JSON.parse(localStorage.getItem('chat')) ?? [];
-				if(data?.body?.senderData?.chatId?.split('@')[0]) {
+				if(data?.body?.senderData?.chatId) {
 					var phoneNumber = `+${
 						data?.body?.senderData?.chatId?.split('@')[0]
 					}`;
 				}
-				if (!chats?.includes(phoneNumber) && phoneNumber) {
-					const newChat = [...chats, phoneNumber];
+				if (phoneNumber && !chats?.find(i => i.phone == phoneNumber)) {
+					const newChat = [...chats, {phone: phoneNumber, chatName: data.body.senderData.chatName}];
 					localStorage.setItem('chat', JSON.stringify(newChat));
 					setLogin()
 				}
