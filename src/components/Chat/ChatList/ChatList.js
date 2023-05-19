@@ -7,9 +7,8 @@ const ChatList = ({ logout, setLogin, activeChat, setActive }) => {
 	const [chats, setChats] = useState(
 		JSON.parse(localStorage.getItem('chat')) ?? []
 	);
-
 	return (
-		<div className={`list ${!activeChat ? 'active' : ''}`}>
+		<div className={`list${!activeChat ? ' active' : ''}`}>
 			<div className='list__wrapper'>
 				<ActionBar
 					logout={logout}

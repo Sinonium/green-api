@@ -1,5 +1,5 @@
 .chat {
-	width: 100%;
+	width: 70%;
 	flex-basis: 70%;
 }
 
@@ -87,7 +87,7 @@
 	background-color: #202c33;
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 650px) {
 	.chat.active {
 		flex-basis: 100%;
 		transition: 0.2s;
@@ -100,9 +100,5 @@
 	}
 	.chat__dialogue-panel {
 		padding: 10px;
-	}
-	.chat-message span {
-		/* word-break: normal;
-		word-wrap: none; */
 	}
 }

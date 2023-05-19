@@ -17,8 +17,12 @@ const ChatItem = ({ active, isChatHeader, elem, onClick, resetChat }) => {
 						</svg>
 					</div>
 				)}
-				<div></div>
-				<img src='' alt='' />
+				{elem && (
+					<>
+						<div></div>
+						<img src='' alt='' />
+					</>
+				)}
 			</div>
 			<div className='list__item__info'>
 				{isChatHeader && <span className='nicname'>{elem}</span>}

@@ -5,7 +5,7 @@ import './index.css';
 
 const ChatWindow = ({ activeChat, messages, handleSendMessage, resetChat }) => {
 	return (
-		<div className={`chat ${activeChat ? 'active' : ''}`}>
+		<div className={`chat${activeChat ? ' active' : ''}`}>
 			<div className='chat__wrapper'>
 				<header className='chat__user__info'>
 					<ChatItem elem={activeChat} isChatHeader resetChat={resetChat} />

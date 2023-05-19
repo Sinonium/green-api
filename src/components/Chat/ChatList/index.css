@@ -123,7 +123,7 @@
 	display: none;
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 650px) {
 	.list.active {
 		flex-basis: 100%;
 		transition: 0.2s;
