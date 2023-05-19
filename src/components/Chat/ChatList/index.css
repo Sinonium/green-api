@@ -17,9 +17,6 @@
 	background-color: darkgrey;
 }
 
-.list__wrapper {
-}
-
 .list__item {
 	display: flex;
 	padding: 15px 7px;
@@ -129,11 +126,12 @@
 @media screen and (max-width: 660px) {
 	.list.active {
 		flex-basis: 100%;
-		transition: 0.4s;
+		transition: 0.2s;
 	}
 	.list {
 		flex-basis: 0%;
-		transition: 0.4s;
+		transition: 0.2s;
+		overflow: auto;
 	}
 	.img__wrapper .arrow-icon {
 		display: block;

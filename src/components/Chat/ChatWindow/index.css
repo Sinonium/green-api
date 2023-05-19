@@ -90,15 +90,19 @@
 @media screen and (max-width: 660px) {
 	.chat.active {
 		flex-basis: 100%;
-		transition: 0.3s;
+		transition: 0.2s;
 		width: 100%;
 	}
 	.chat {
 		flex-basis: 0%;
-		transition: 0.3s;
+		transition: 0.2s;
 		width: 0;
 	}
 	.chat__dialogue-panel {
-		padding: 20px;
+		padding: 10px;
+	}
+	.chat-message span {
+		/* word-break: normal;
+		word-wrap: none; */
 	}
 }

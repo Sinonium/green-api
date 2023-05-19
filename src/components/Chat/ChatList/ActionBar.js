@@ -13,13 +13,13 @@ const ActionBar = ({ logout, setLogin, setChats }) => {
 	const handleAddPhone = (phone) => {
 		if (localStorage.getItem('chat')) {
 			const existingData = JSON.parse(localStorage.getItem('chat')) || [];
-			if(existingData.includes(phone)) {
+			if(existingData.find(i=> i.phone === phone)) {
 				return
 			}
-			const updatedData = [...existingData, phone];
+			const updatedData = [...existingData, {phone}];
 			localStorage.setItem('chat', JSON.stringify(updatedData));
 		} else {
-			const arr = [phone];
+			const arr = [{phone}];
 			localStorage.setItem('chat', JSON.stringify(arr));
 		}
 		setChats(JSON.parse(localStorage.getItem('chat')))

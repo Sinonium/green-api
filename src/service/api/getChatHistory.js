@@ -10,7 +10,7 @@ export const getChatHistory = async (id, token, chatid) => {
 					headers: {
 						'Content-Type': 'application/json',
 					},
-					body: JSON.stringify({ chatId: `${chatid}@g.us`, count: 5 }),
+					body: JSON.stringify({ chatId: `${chatid}@g.us`, count: 20 }),
 				}
 			);
 			var json = await response.json();
@@ -22,7 +22,7 @@ export const getChatHistory = async (id, token, chatid) => {
 					headers: {
 						'Content-Type': 'application/json',
 					},
-					body: JSON.stringify({ chatId: `${chatid}@c.us`, count: 5 }),
+					body: JSON.stringify({ chatId: `${chatid}@c.us`, count: 20 }),
 				}
 			);
 			var json = await response.json();
